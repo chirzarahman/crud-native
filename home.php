@@ -1,4 +1,5 @@
-<?
+<?php
+
 session_start();
 if (!isset($_SESSION["login"])) {
   header("Location: login.php");
@@ -7,7 +8,8 @@ if (!isset($_SESSION["login"])) {
 
 require 'functions.php';
 
-$animals = query("SELECT * FROM animals");
+$students = query("SELECT * FROM students");
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@ $animals = query("SELECT * FROM animals");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Students</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,8 +28,8 @@ $animals = query("SELECT * FROM animals");
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                Animals
+            <a class="navbar-brand" href="home.php">
+                Students
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -51,35 +53,33 @@ $animals = query("SELECT * FROM animals");
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Animals</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Students</h6>
                         </div>
                         <div class="card-body">
-                          <a href="add.php" class="btn btn-primary mb-2 float-right">Add Animals</a>
+                          <a href="add.php" class="btn btn-primary mb-2 float-right">Add Students</a>
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
+                                            <th scope="col">NIS</th>
                                             <th scope="col">Nama</th>
-                                            <th scope="col">Berkaki</th>
-                                            <th scope="col">Golongan Habitat</th>
-                                            <th scope="col">Golongan Makanan</th>
+                                            <th scope="col">Jurusan</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $id = 1; ?>
-                                        <?php foreach ( $animals as $row ) : ?>
+                                        <?php foreach( $students as $row) : ?>
                                         <tr>
                                             <td>
                                                 <?= $id ?>
                                             </td>
                                             <td>
-                                                <?= $row["nama"]; ?>
+                                                <?= $row["nis"]; ?>
                                             </td>
-                                            <td> <?= $row["kaki"]; ?> </td>
-                                            <td> <?= $row["gol_habitat"]; ?> </td>
-                                            <td> <?= $row["gol_makanan"]; ?> </td>
+                                            <td> <?= $row["nama"]; ?> </td>
+                                            <td> <?= $row["jurusan"]; ?> </td>
                                             <td>
                                                 <a href='edit.php?id=<?= $row["id"]; ?>' class="btn btn-primary"><i class="fas fa-fw fa-edit"></i> Edit</a>
                                                 <a href='delete.php?id=<?= $row["id"]; ?>' class="btn btn-danger" onclick="return confirm('serius');"><i class="fas fa-fw fa-trash"></i> Delete</a>

@@ -30,7 +30,7 @@ if( isset($_POST["add"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Students</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,8 +39,8 @@ if( isset($_POST["add"])){
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                Animals
+            <a class="navbar-brand" href="add.php">
+                Students
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -63,10 +63,18 @@ if( isset($_POST["add"])){
           <div class="row justify-content-center">
               <div class="col-md-8">
                   <div class="card">
-                      <div class="card-header text-primary">Add Animals</div>
+                      <div class="card-header text-primary">Add Students</div>
 
                       <div class="card-body">
                           <form method="POST" action="" enctype="multipart/form-data">
+                              <div class="form-group row">
+                                  <label for="nis" class="col-md-4 col-form-label text-md-right">NIS</label>
+
+                                  <div class="col-md-6">
+                                      <input id="nis" type="text" class="form-control" name="nis" required autofocus>
+                                  </div>
+                              </div>
+
                               <div class="form-group row">
                                   <label for="nama" class="col-md-4 col-form-label text-md-right">Nama</label>
 
@@ -76,26 +84,18 @@ if( isset($_POST["add"])){
                               </div>
 
                               <div class="form-group row">
-                                  <label for="kaki" class="col-md-4 col-form-label text-md-right">Berkaki</label>
+                                  <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                   <div class="col-md-6">
-                                      <input id="kaki" type="number" class="form-control" name="kaki" required>
+                                      <input id="email" type="email" class="form-control" name="email" autocomplete="email" required>
                                   </div>
                               </div>
 
                               <div class="form-group row">
-                                  <label for="gol_habitat" class="col-md-4 col-form-label text-md-right">Golongan Habitat</label>
+                                  <label for="jurusan" class="col-md-4 col-form-label text-md-right">Jurusan</label>
 
                                   <div class="col-md-6">
-                                      <input id="gol_habitat" type="text" class="form-control" name="gol_habitat" required>
-                                  </div>
-                              </div>
-
-                              <div class="form-group row">
-                                  <label for="gol_makanan" class="col-md-4 col-form-label text-md-right">Golongan Makanan</label>
-
-                                  <div class="col-md-6">
-                                      <input id="gol_makanan" type="text" class="form-control" name="gol_makanan" required>
+                                      <input id="jurusan" type="text" class="form-control" name="jurusan" required>
                                   </div>
                               </div>
 

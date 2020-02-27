@@ -1,9 +1,9 @@
 <?php
 
 //Connect to Database
-$conn = mysqli_connect("localhost", "root", "root", "db_crud_native");
+$conn = mysqli_connect("localhost", "root", "", "db_native");
 
-function query ($query){
+function query($query){
     global $conn;
     $result = mysqli_query($conn, $query);
     $rows = [];
@@ -15,19 +15,19 @@ function query ($query){
 
 function add ($data){
   global $conn;
+  $nis = htmlspecialchars($data["nis"]);
   $nama = htmlspecialchars($data["nama"]);
-  $kaki = htmlspecialchars($data["kaki"]);
-  $gol_habitat = htmlspecialchars($data["gol_habitat"]);
-  $gol_makanan = htmlspecialchars($data["gol_makanan"]);
+  $email = strtolower(stripslashes($data["email"]));
+  $jurusan = htmlspecialchars($data["jurusan"]);
 
-  $query = "INSERT INTO animals (nama,kaki, gol_habitat, gol_makanan) VALUES ('$nama', '$kaki', '$gol_habitat', '$gol_makanan')";
+  $query = "INSERT INTO students (nis, nama, email, jurusan) VALUES ('$nis', '$nama', '$email', '$jurusan')";
   mysqli_query($conn, $query);
   return mysqli_affected_rows($conn);
 }
 
 function delete($id){
   global $conn;
-  mysqli_query($conn, "DELETE FROM animals WHERE id = $id");
+  mysqli_query($conn, "DELETE FROM students WHERE id = $id");
   return mysqli_affected_rows($conn);
 }
 
@@ -35,16 +35,16 @@ function edit($data){
   global $conn;
 
   $id = $data["id"];
+  $nis = htmlspecialchars($data["nis"]);
   $nama = htmlspecialchars($data["nama"]);
-  $kaki = htmlspecialchars($data["kaki"]);
-  $gol_habitat = htmlspecialchars($data["gol_habitat"]);
-  $gol_makanan = htmlspecialchars($data["gol_makanan"]);
+  $email = strtolower(stripslashes($data["email"]));
+  $jurusan = htmlspecialchars($data["jurusan"]);
 
-  $query = "UPDATE animals SET
+  $query = "UPDATE students SET
+              nis = '$nis',
               nama = '$nama',
-              kaki = '$kaki',
-              gol_habitat = '$gol_habitat',
-              gol_makanan = '$gol_makanan'
+              email = '$email',
+              jurusan = '$jurusan'
             WHERE id = $id
             ";
   mysqli_query($conn, $query);
@@ -56,12 +56,12 @@ function register($data){
 
   $username = strtolower(stripslashes($data["username"]));
   $email = strtolower(stripslashes($data["email"]));
+  $fullname = strtolower(stripslashes($data["fullname"]));
   $password = mysqli_real_escape_string($conn, $data["password"]);
   $password2 = mysqli_real_escape_string($conn, $data["password2"]);
 
   //cek username sudah ada atau belum
   $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
-
   if (mysqli_fetch_assoc($result)) {
     echo "<script>
             alert('Username sudah terdaftar!');
@@ -80,7 +80,7 @@ function register($data){
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   //tambah user baru
-  mysqli_query($conn, "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')");
+  mysqli_query($conn, "INSERT INTO users (username, email, fullname, password) VALUES ('$username', '$email', '$fullname', '$password')");
   return mysqli_affected_rows($conn);
 }
 

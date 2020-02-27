@@ -21,7 +21,7 @@ if (isset($_POST["register"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Students</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,8 +30,8 @@ if (isset($_POST["register"])) {
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                Animals
+            <a class="navbar-brand" href="register.php">
+                Students
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -78,21 +78,29 @@ if (isset($_POST["register"])) {
 
                         <div class="card-body">
                             <form method="POST" action="">
-                              <div class="form-group row">
+                                <div class="form-group row">
                                   <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 
                                   <div class="col-md-6">
-                                      <input id="username" type="username" class="form-control" name="username" required>
+                                      <input id="username" type="text" class="form-control" name="username" autofocus required>
                                   </div>
-                              </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Email
                                         Address</label>
                                     <div class="col-md-6">
                                         <input id="email" type="email" class="form-control" name="email" required
-                                            autocomplete="email" autofocus>
+                                            autocomplete="email">
                                     </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label for="fullname" class="col-md-4 col-form-label text-md-right">Nama Lengkap</label>
+
+                                  <div class="col-md-6">
+                                      <input id="fullname" type="text" class="form-control" name="fullname" autofocus required>
+                                  </div>
                                 </div>
 
                                 <div class="form-group row">

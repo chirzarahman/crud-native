@@ -8,7 +8,7 @@ if (!isset($_SESSION["login"])) {
 require 'functions.php';
 
 $id = $_GET["id"];
-$mhs = query("SELECT * FROM animals WHERE id = $id")[0];
+$std = query("SELECT * FROM students WHERE id = $id")[0];
 
 if( isset($_POST["edit"])){
   //check data success send
@@ -33,7 +33,7 @@ if( isset($_POST["edit"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Students</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -42,8 +42,8 @@ if( isset($_POST["edit"])){
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                Animals
+            <a class="navbar-brand" href="edit.php?id=<?= $std["id"]; ?>">
+                Students
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -62,60 +62,60 @@ if( isset($_POST["edit"])){
     </nav>
 
     <main class="py-4">
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-md-8">
-                  <div class="card">
-                      <div class="card-header text-primary">Edit Animals</div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                      <div class="card-header text-primary">Edit Students</div>
 
-                      <div class="card-body">
+                        <div class="card-body">
                           <form method="POST" action="" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
-                              <div class="form-group row">
+                            <input type="hidden" name="id" value="<?= $std["id"]; ?>">
+                                <div class="form-group row">
+                                  <label for="nis" class="col-md-4 col-form-label text-md-right">NIS</label>
+
+                                  <div class="col-md-6">
+                                      <input id="nis" type="text" class="form-control" name="nis" value="<?= $std["nis"] ?>" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
                                   <label for="nama" class="col-md-4 col-form-label text-md-right">Nama</label>
 
                                   <div class="col-md-6">
-                                      <input id="nama" type="text" class="form-control" name="nama" value="<?= $mhs["nama"] ?>" required>
+                                      <input id="nama" type="text" class="form-control" name="nama" value="<?= $std["nama"] ?>" required>
                                   </div>
-                              </div>
+                                </div>
 
-                              <div class="form-group row">
-                                  <label for="kaki" class="col-md-4 col-form-label text-md-right">Berkaki</label>
+                                <div class="form-group row">
+                                  <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                   <div class="col-md-6">
-                                      <input id="kaki" type="number" class="form-control" name="kaki" value="<?= $mhs["kaki"] ?>" required>
+                                      <input id="email" type="text" class="form-control" name="email" value="<?= $std["email"] ?>" required>
                                   </div>
-                              </div>
+                                </div>
 
-                              <div class="form-group row">
-                                  <label for="gol_habitat" class="col-md-4 col-form-label text-md-right">Golongan Habitat</label>
+                                <div class="form-group row">
+                                  <label for="jurusan" class="col-md-4 col-form-label text-md-right">Jurusan</label>
 
                                   <div class="col-md-6">
-                                      <input id="gol_habitat" type="text" class="form-control" name="gol_habitat" value="<?= $mhs["gol_habitat"] ?>" required>
+                                      <input id="jurusan" type="text" class="form-control" name="jurusan" value="<?= $std["jurusan"] ?>" required>
                                   </div>
-                              </div>
+                                </div>
 
-                              <div class="form-group row">
-                                  <label for="gol_makanan" class="col-md-4 col-form-label text-md-right">Golongan Makanan</label>
-
-                                  <div class="col-md-6">
-                                      <input id="gol_makanan" type="text" class="form-control" name="gol_makanan" value="<?= $mhs["gol_makanan"] ?>" required>
-                                  </div>
-                              </div>
-
-                              <div class="form-group row mb-0">
+                                <div class="form-group row mb-0">
                                   <div class="col-md-8 offset-md-4">
                                       <button type="submit" class="btn btn-primary" name="edit">
                                           Save
                                       </button>
                                   </div>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>
